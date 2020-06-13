@@ -1,4 +1,3 @@
-# 깃 테스트입니다.
 from tkinter import *
 import math
 import random
@@ -10,6 +9,8 @@ class Shape:
 
     def drawShape(self):
         raise NotImplementedError()
+
+# 깃 테스트입니다
 
 
 class Rectangle(Shape):

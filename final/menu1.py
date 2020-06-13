@@ -170,6 +170,7 @@ def main():
                     showHiScores = False
                 elif selection == 1:
                     inMenu = False
+                    pygame.mouse.set_visible(1)
                     test.input_string()
                     ship.initializeKeys()
                 elif selection == 2:
