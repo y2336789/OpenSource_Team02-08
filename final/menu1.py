@@ -4,7 +4,7 @@ import random
 from collections import deque
 import PySpaceShip
 import tengaii
-import test
+import loginform
 
 
 from sprites import (MasterSprite, Ship, Alien, Missile, BombPowerup,
@@ -42,7 +42,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption('Shooting Game')
-    pygame.mouse.set_visible(0)
+    pygame.mouse.set_visible(1)
 
 # Create the background which will scroll and loop over a set of different
 # size stars
@@ -170,8 +170,7 @@ def main():
                     showHiScores = False
                 elif selection == 1:
                     inMenu = False
-                    pygame.mouse.set_visible(1)
-                    test.input_string()
+                    loginform.input_string()
                     ship.initializeKeys()
                 elif selection == 2:
                     inMenu = False

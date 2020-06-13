@@ -49,7 +49,8 @@ def game2(screen):
 
     # 이벤트 루프
     def game_loop():
-        battleship = pygame.image.load(os.path.join(image_path, "tradeship-removebg.png"))
+        battleship = pygame.image.load(os.path.join(
+            image_path, "tradeship-removebg.png"))
         battleship_size = battleship.get_rect().size  # 이미지의 크기를 구해옴
         battleship_width = battleship_size[0]  # 캐릭터의 가로 크기
         battleship_height = battleship_size[1]  # 캐릭터의 세로 크기
@@ -63,7 +64,8 @@ def game2(screen):
         # 캐릭터 이동속도
         battleship_speed = 3
         ###################################################################
-        background = pygame.image.load(os.path.join(image_path, "SpaceBackground1.png"))
+        background = pygame.image.load(
+            os.path.join(image_path, "SpaceBackground1.png"))
         background_width = 1024
         background2 = background.copy()
         background_x = 0
@@ -346,9 +348,11 @@ def game2(screen):
             elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
             # 경과 시간(ms)을 1000으로 나누어서 초(s) 단위로 표시
 
-            timer = game_font.render("Time : {}".format(int(total_time - elapsed_time)), True, (255, 255, 255))
+            timer = game_font.render("Time : {}".format(
+                int(total_time - elapsed_time)), True, (255, 255, 255))
             # 출력할 글자, True, 글자 색상
-            score = game_font.render("Score : {}".format(int(s_score)), True, (255, 255, 255))
+            score = game_font.render("Score : {}".format(
+                int(s_score)), True, (255, 255, 255))
             screen.blit(background, (background_x, 0))  # 배경 그리기
             screen.blit(background2, (background2_x, 0))
 
@@ -380,13 +384,15 @@ def game2(screen):
     def game_over():
         # 게임 오버 메시지
         msg = game_font.render(game_result, True, (255, 255, 0))
-        msg_rect = msg.get_rect(center=(int(screen_width / 2), int(screen_height / 2)))
+        msg_rect = msg.get_rect(
+            center=(int(screen_width / 2), int(screen_height / 2)))
         screen.blit(msg, msg_rect)
         pygame.display.update()  # 게임화면을 다시 그리기!
 
     def game_screen():
-        global s_score
-        start_image = pygame.image.load(os.path.join(image_path, 'game_screen.png'))
+        #global s_score
+        start_image = pygame.image.load(
+            os.path.join(image_path, 'game_screen.png'))
         screen.blit(start_image, [0, 0])
 
         # Main_Menu_sound.play()
