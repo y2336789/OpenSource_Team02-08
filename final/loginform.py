@@ -1,7 +1,5 @@
 import pygame as pg
 
-import menu1
-
 
 def input_string():
     screen = pg.display.set_mode((640, 480))
@@ -48,10 +46,8 @@ def input_string():
                     if count2 == False:
                         print("비밀번호를 입력하세요.")
                     if count1 == True and count2 == True:
-                        print(text)
-                        print(text2)
-                        menu1.main()
-                        return
+                        Info = [text, text2]
+                        return Info
                 # Change the current color of the input box.
                 color = color_active if active else color_inactive
                 color2 = color_active if active2 else color_inactive
