@@ -5,10 +5,12 @@ import pygame
 import random
 import menu2
 
+s_score = 0
 
 ######################################################
 # 기본 초기화 (반드시 해야 하는 것들)
-def game2(screen):
+def game2():
+    global s_score
     pygame.init()
 
     WHITE = (255, 255, 255)
@@ -44,8 +46,6 @@ def game2(screen):
 
     isShotBat = False
     isShotDragon = False
-
-    s_score = 0
 
     # 이벤트 루프
     def game_loop():
@@ -83,8 +83,6 @@ def game2(screen):
         global s_score
 
         bat_speed = 10
-
-        s_score = 0
         # 메인 적
         ###################################################################
         dragon = pygame.image.load(os.path.join(image_path, "spaceship.png"))
@@ -417,9 +415,6 @@ def game2(screen):
                 return 'play'
         return 'game_screen'
 
-    def game_quit():
-        pygame.quit()
-
     def main_loop():
         action = 'game_screen'
 
@@ -428,8 +423,11 @@ def game2(screen):
                 action = game_screen()
             elif action == 'play':
                 action = game_loop()
-            elif action == 'quit':
-                action = game_quit()
+                list = ['0',s_score]
+                return list
+        #quit
+        list = ['1',s_score]
+        return list
 
-    main_loop()
-    menu2.main()
+    main_list = main_loop()
+    return main_list

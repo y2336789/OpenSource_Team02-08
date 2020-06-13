@@ -11,8 +11,7 @@ from pygame.locals import *
 
 score = 0
 
-#dsds
-def game1(screen):
+def game1():
     global score
     WINDOW_WIDTH = 1000
     WINDOW_HEIGHT = 750
@@ -33,8 +32,6 @@ def game1(screen):
     pygame.display.set_icon(pygame.image.load('warp.png'))
     fps_clock = pygame.time.Clock()
     FPS = 60
-
-    score = 0
 
     default_font = pygame.font.Font('YiSunRegular.ttf', 36)
     background_img = pygame.image.load('background.jpg')
@@ -584,8 +581,13 @@ def game1(screen):
                 action = game_screen()
             elif action == 'play':
                 action = game_loop()
+                list = ['0',score]
+                return list
+                #action = game_loop()
 
         # pygame.quit()
-        menu2.main()
+        list = ['1',score]
+        return list
 
-    main_loop()
+    main_list = main_loop()
+    return main_list

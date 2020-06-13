@@ -159,7 +159,7 @@ with requests.Session() as s:
                 break
         elif first_work==2:
             webbrowser.open(signup_URL)
-            break
+            first_work=menu1.main()
         else:
             print('올바른 작업을 선택해주세요.')
 
@@ -168,9 +168,29 @@ with requests.Session() as s:
         #작업 설정
         work = menu2.main()
         if work==1:
-            PySpaceShip.game1(screen)
+            #init_score = 0
+            value = 0
+            while value==0:
+                score_list = PySpaceShip.game1()
+                update1(score_list[1])
+                if score_list[0]=='0':
+                    PySpaceShip.score = score_list[1]
+                elif score_list[0]=='1':
+                    PySpaceShip.score = 0
+                    value=1
+
         elif work==2:
-            tengaii.game2(screen)
+            value = 0
+            while value==0:
+                score_list = tengaii.game2()
+                update3(score_list[1])
+                if score_list[0]=='0':
+                    tengaii.s_score = score_list[1]
+                elif score_list[0]=='1':
+                    tengaii.s_score = 0
+                    value=1
+        elif work==5:
+            break
         '''
         work = int(input('=============\n작업을 선택해주세요. \n1. 명예의 전당 \n2. 새로운 게임 \n3. 내 기록 보기 \n4. 로그아웃\n5. 끝내기\n=============\n'))
         if work==5: #끝내기

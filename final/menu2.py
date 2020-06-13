@@ -190,7 +190,7 @@ def main():
                         pygame.mixer.music.stop()
                     Database.setSound(int(music), music=True)
                 elif selection == 5:
-                    return
+                    return 5
             elif (event.type == pygame.KEYDOWN
                   and event.key == pygame.K_w
                   and selection > 1
