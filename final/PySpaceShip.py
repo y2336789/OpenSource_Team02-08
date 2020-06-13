@@ -11,7 +11,7 @@ from pygame.locals import *
 
 score = 0
 
-
+#dsds
 def game1(screen):
     global score
     WINDOW_WIDTH = 1000
