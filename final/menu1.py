@@ -2,10 +2,6 @@ import pygame
 from pygame.locals import *
 import random
 from collections import deque
-import PySpaceShip
-import tengaii
-import loginform
-
 
 from sprites import (MasterSprite, Ship, Alien, Missile, BombPowerup,
                      ShieldPowerup, Explosion, Siney, Spikey, Fasty,
@@ -170,13 +166,10 @@ def main():
                     showHiScores = False
                 elif selection == 1:
                     inMenu = False
-                    loginform.input_string()
-                    ship.initializeKeys()
+                    return 1
                 elif selection == 2:
                     inMenu = False
-                    tengaii.game2(screen)
-                    ship.initializeKeys()
-                    #showHiScores = True
+                    return 2
                 elif selection == 3:
                     soundFX = not soundFX
                     if soundFX:

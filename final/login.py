@@ -2,6 +2,11 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import webbrowser
+import menu1
+import menu2
+import loginform
+import PySpaceShip
+import tengaii
 
 #헤더 정보입니다.
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
@@ -114,10 +119,10 @@ def ShowGlory():
         print(title.find('h3').get_text())
 '''
 
-def login():
+def login(str1, str2):
     global data
-    data['username']=input('아이디 : ')
-    data['password']=input('비밀번호 : ')
+    data['username']=str1
+    data['password']=str2
 
     first_page = s.get(URL)
     html = first_page.text
@@ -137,19 +142,23 @@ def login():
     soup = bs(post_one.text, 'html.parser')
     info = soup.select('#home-section > div.ftco-blocks-cover-1 > div > div > div > div.col-md-5.mt-5.pt-5 > p')
     if info[0].text == '좌측에 정보를 입력해주세요.':
-        print('아이디 또는 비밀번호가 일치하지 않습니다. 정확한 정보를 입력해주세요.')
-        login()
+        print('아이디 또는 비밀번호가 일치하지 않습니다. 정확한 정보를 입력해주세요.') #로그인 실패 메시지
+        return False
+    else:
+        return True
 
 # Session 생성, with 구문 안에서 유지
 with requests.Session() as s:
+    first_work=menu1.main()
     while True:
-        first_work = int(input('우주 大 탐험을 시작합니다. \n1. 회원가입\n2. 로그인\n'))
         if first_work==1:
-            webbrowser.open(signup_URL)
+            Info = loginform.input_string()
+            value=login(Info[0],Info[1])
+            if value:
+                Greeting()
+                break
         elif first_work==2:
-            login()
-            #환영인사
-            Greeting()
+            webbrowser.open(signup_URL)
             break
         else:
             print('올바른 작업을 선택해주세요.')
@@ -157,6 +166,12 @@ with requests.Session() as s:
     # -- 여기서부터는 로그인이 된 세션이 유지--
     while True:
         #작업 설정
+        work = menu2.main()
+        if work==1:
+            PySpaceShip.game1(screen)
+        elif work==2:
+            tengaii.game2(screen)
+        '''
         work = int(input('=============\n작업을 선택해주세요. \n1. 명예의 전당 \n2. 새로운 게임 \n3. 내 기록 보기 \n4. 로그아웃\n5. 끝내기\n=============\n'))
         if work==5: #끝내기
             break
@@ -164,7 +179,8 @@ with requests.Session() as s:
             logout_req = s.get('http://noriaki.pythonanywhere.com/logout/') #로그아웃 페이지로 이동하면 곧바로 로그아웃이 된다.
             value = input('로그아웃 되었습니다!\n재로그인 하시겠습니까? (y/n)')
             if value=='y':
-                login()
+                #login()
+                pass
             else:
                 break
         elif work==3: #
@@ -190,5 +206,6 @@ with requests.Session() as s:
 
         else:
             print('올바른 작업을 선택해주세요.')
+        '''
 
     print('게임을 종료합니다.')

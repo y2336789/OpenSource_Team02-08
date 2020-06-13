@@ -1,8 +1,6 @@
 import pygame
 import random
 from collections import deque
-import PySpaceShip
-import tengaii
 
 from sprites import (MasterSprite, Ship, Alien, Missile, BombPowerup,
                      ShieldPowerup, Explosion, Siney, Spikey, Fasty,
@@ -174,12 +172,10 @@ def main():
                     showHiScores = False
                 elif selection == 1:
                     inMenu = False
-                    PySpaceShip.game1(screen)
-                    ship.initializeKeys()
+                    return 1
                 elif selection == 2:
                     inMenu = False
-                    tengaii.game2(screen)
-                    ship.initializeKeys()
+                    return 2
                     #showHiScores = True
                 elif selection == 3:
                     soundFX = not soundFX
