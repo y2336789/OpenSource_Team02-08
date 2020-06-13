@@ -17,6 +17,7 @@ def input_string():
     active3 = False
     text = ''
     text2 = ''
+    mask = ''
     done = False
 
     count1 = False
@@ -45,9 +46,8 @@ def input_string():
                     if count2 == False:
                         print("비밀번호를 입력하세요.")
                     if count1 == True and count2 == True:
-                        Info = [text,text2]
+                        Info = [text, text2]
                         return Info
-
                 # Change the current color of the input box.
                 color = color_active if active else color_inactive
                 color2 = color_active if active2 else color_inactive
@@ -72,16 +72,19 @@ def input_string():
                         count += 1
                     elif event.key == pg.K_BACKSPACE:
                         text2 = text2[:-1]
+                        mask = mask[:-1]
                         pg.draw.rect(screen, (0, 0, 0),
                                      (input_box2.x+5, input_box2.y+5, input_box2.width, input_box2.height))
                     else:
                         text2 += event.unicode
+                        mask += "*"
                         count2 = True
 
         #screen.fill((30, 30, 30))
         # Render the current text.
         txt_surface = font.render(text, True, color)
-        txt_surface2 = font.render(text2, True, color2)
+        #txt_surface2 = font.render(text2, True, color2)
+        txt_surface2 = font.render(mask, True, color2)
         # Resize the box if the text is too long.
         width = max(200, txt_surface.get_width()+10)
         width2 = max(200, txt_surface2.get_width()+10)
@@ -89,7 +92,7 @@ def input_string():
         input_box2.w = width2
         # Blit the text.
         screen.blit(txt_surface, (input_box.x+5, input_box.y+5))
-        screen.blit(txt_surface2, (input_box2.x+5, input_box2.y+5))
+        screen.blit(txt_surface2, (input_box2.x+5, input_box2.y+10))
         # Blit the input_box rect.
         pg.draw.rect(screen, color, input_box, 2)
         pg.draw.rect(screen, color2, input_box2, 2)
