@@ -1,10 +1,14 @@
 import pygame as pg
 
+screen = pg.display.set_mode((640, 480))
+clock = pg.time.Clock()
+
 
 def input_string():
-    screen = pg.display.set_mode((640, 480))
+    global screen
+    global clock
+    screen.fill((0, 0, 0))
     font = pg.font.Font(None, 32)
-    clock = pg.time.Clock()
     input_box = pg.Rect(100, 100, 140, 32)
     input_box2 = pg.Rect(100, 200, 140, 32)
     color_inactive = pg.Color('lightskyblue3')
@@ -80,6 +84,7 @@ def input_string():
                         mask += "*"
                         count2 = True
 
+        game_screen()
         #screen.fill((30, 30, 30))
         # Render the current text.
         txt_surface = font.render(text, True, color)
@@ -100,3 +105,24 @@ def input_string():
 
         pg.display.flip()
         clock.tick(30)
+
+
+def draw_text(text, font, surface, x, y, main_color):
+    text_obj = font.render(text, True, main_color)
+    text_rect = text_obj.get_rect()
+    text_rect.centerx = x
+    text_rect.centery = y
+    surface.blit(text_obj, text_rect)
+
+
+def game_screen():
+    global screen
+    start_image = pg.image.load('game_screen.png')
+    screen.blit(start_image, [0, 0])
+    # Main_Menu_sound.play()
+    draw_text('ID : ',
+              pg.font.Font('이순신Bold.ttf', 24), screen,
+              50, 100, (255, 255, 255))
+    draw_text('PW : ',
+              pg.font.Font('이순신Bold.ttf', 24), screen,
+              50, 200, (255, 255, 255))
