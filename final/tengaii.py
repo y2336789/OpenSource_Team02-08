@@ -6,13 +6,17 @@ import random
 import menu2
 
 s_score = 0
-print_score=0
+print_score = 0
+
+abcount = 0
 
 ######################################################
 # 기본 초기화 (반드시 해야 하는 것들)
+
+
 def game2():
     global s_score
-    pygame.mixer.pre_init(44100,-16,2,512)
+    pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()
     pygame.mixer.init()
 
@@ -428,18 +432,38 @@ def game2():
                 return 'play'
         return 'game_screen'
 
+    def how_to_play():
+        pygame.mouse.set_visible(True)
+        start_image1 = pygame.image.load('explanation2.png')
+        screen.blit(start_image1, [0, 0])
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                return 'game_screen'
+
+        return 'how_to_play'
+
     def main_loop():
-        action = 'game_screen'
+        global abcount
+        if abcount == 0:
+            action = 'how_to_play'
+            abcount += 1
+        else:
+            action = 'game_screen'
 
         while action != 'quit':
+            if action == 'how_to_play':
+                action = how_to_play()
             if action == 'game_screen':
                 action = game_screen()
             elif action == 'play':
                 action = game_loop()
-                list = ['0',s_score]
+                list = ['0', s_score]
                 return list
-        #quit
-        list = ['1',s_score]
+        # quit
+        list = ['1', s_score]
         return list
 
     main_list = main_loop()

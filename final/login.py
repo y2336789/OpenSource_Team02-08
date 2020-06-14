@@ -198,6 +198,8 @@ with requests.Session() as s:
         while True:
             # 작업 설정
             work = menu2.main()
+            PySpaceShip.abcount = 0
+            tengaii.abcount = 0
             if work == 1:
                 #init_score = 0
                 value = 0
@@ -219,7 +221,7 @@ with requests.Session() as s:
                     if score_list[0] == '0':
                         tengaii.print_score = score_list[1]
                     elif score_list[0] == '1':
-                        tengaii.s_score = 0
+                        tengaii.print_score = 0
                         value = 1
             elif work == 3:
                 ShowGlory()
@@ -230,7 +232,7 @@ with requests.Session() as s:
                 print(logout_req)
                 break
             else:
-                loop=0
+                loop = 0
                 break
 
     print('게임을 종료합니다.')

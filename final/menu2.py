@@ -28,15 +28,12 @@ class Keyboard(object):
 
 
 def main():
-    # Initialize everything
     pygame.mixer.pre_init(11025, -16, 2, 512)
     pygame.init()
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption('Shooting Game')
     pygame.mouse.set_visible(0)
 
-# Create the background which will scroll and loop over a set of different
-# size stars
     background = pygame.Surface((500, 2000))
     background = background.convert()
     background.fill((0, 0, 0))
@@ -54,13 +51,11 @@ def main():
         pygame.draw.rect(
             background, (255, 255, 0), pygame.Rect(x, y, size, size))
 
-# Display the background
     screen.blit(background, (0, 0))
     pygame.display.flip()
 
-# Prepare game objects
     speed = 1.5
-    clockTime = 60  # maximum FPS
+    clockTime = 60  # FPS 설정
     clock = pygame.time.Clock()
 
     font = pygame.font.Font("이순신Bold.ttf", 30)
@@ -71,9 +66,11 @@ def main():
     titleRect.midtop = screen.get_rect().inflate(0, -200).midtop
 
     war_start_Text = font.render('우주 대 전쟁 시작', 1, BLUE)
-    war_start_Pos = war_start_Text.get_rect(midtop=titleRect.inflate(0, 100).midbottom)
+    war_start_Pos = war_start_Text.get_rect(
+        midtop=titleRect.inflate(0, 100).midbottom)
     tegai_start_Text = font.render('텐가이 시작', 1, BLUE)
-    tegai_start_Pos = tegai_start_Text.get_rect(topleft=war_start_Pos.bottomleft)
+    tegai_start_Pos = tegai_start_Text.get_rect(
+        topleft=war_start_Pos.bottomleft)
     rank_Text = font.render('랭킹 보기', 1, BLUE)
     rank_Pos = rank_Text.get_rect(topleft=tegai_start_Pos.bottomleft)
 
@@ -84,7 +81,8 @@ def main():
     logout_Pos = logout_Text.get_rect(topleft=myscore_Pos.bottomleft)
     selectText = font.render('*', 1, BLUE)
     selectPos = selectText.get_rect(topright=war_start_Pos.topleft)
-    menuDict = {1: war_start_Pos, 2: tegai_start_Pos, 3: rank_Pos, 4: myscore_Pos, 5: logout_Pos}
+    menuDict = {1: war_start_Pos, 2: tegai_start_Pos,
+                3: rank_Pos, 4: myscore_Pos, 5: logout_Pos}
     selection = 1
     show_menu2 = False
     soundFX = Database.getSound()
@@ -147,7 +145,6 @@ def main():
     while True:
         clock.tick(clockTime)
 
-    # Update and draw all sprites
         screen.blit(
             background, (0, 0), area=pygame.Rect(
                 0, backgroundLoc, 500, 500))

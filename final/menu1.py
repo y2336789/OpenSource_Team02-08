@@ -28,15 +28,12 @@ class Keyboard(object):
 
 
 def main():
-    # Initialize everything
     pygame.mixer.pre_init(11025, -16, 2, 512)
     pygame.init()
     screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption('Shooting Game')
     pygame.mouse.set_visible(1)
 
-# Create the background which will scroll and loop over a set of different
-# size stars
     background = pygame.Surface((500, 2000))
     background = background.convert()
     background.fill((0, 0, 0))
@@ -54,13 +51,11 @@ def main():
         pygame.draw.rect(
             background, (255, 255, 0), pygame.Rect(x, y, size, size))
 
-# Display the background
     screen.blit(background, (0, 0))
     pygame.display.flip()
 
-# Prepare game objects
     speed = 1.5
-    clockTime = 60  # maximum FPS
+    clockTime = 60  # FPS 설정
     clock = pygame.time.Clock()
     font = pygame.font.Font("이순신Bold.ttf", 30)
 
@@ -71,7 +66,7 @@ def main():
 
     loginText = font.render('로그인', 1, BLUE)
     loginPos = loginText.get_rect(midtop=titleRect.inflate(0, 100).midbottom)
-    joinText = font.render('회원가입 : ', 1, BLUE)
+    joinText = font.render('회원가입', 1, BLUE)
     joinPos = joinText.get_rect(topleft=loginPos.bottomleft)
     quitText = font.render('게임 종료', 1, BLUE)
     quitPos = quitText.get_rect(topleft=joinPos.bottomleft)
@@ -133,7 +128,6 @@ def main():
     while True:
         clock.tick(clockTime)
 
-    # Update and draw all sprites
         screen.blit(
             background, (0, 0), area=pygame.Rect(
                 0, backgroundLoc, 500, 500))
