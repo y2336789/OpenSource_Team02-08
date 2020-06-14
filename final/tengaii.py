@@ -6,6 +6,7 @@ import random
 import menu2
 
 s_score = 0
+print_score=0
 
 ######################################################
 # 기본 초기화 (반드시 해야 하는 것들)
@@ -400,7 +401,7 @@ def game2():
         pygame.display.update()  # 게임화면을 다시 그리기!
 
     def game_screen():
-        #global s_score
+        global print_score
         start_image = pygame.image.load(
             os.path.join(image_path, 'game_screen.png'))
         screen.blit(start_image, [0, 0])
@@ -408,7 +409,7 @@ def game2():
         # Main_Menu_sound.play()
         title = game_font.render('텟카이', True, WHITE)
         screen.blit(title, (480, 50))
-        sc = game_font.render("점수 : {}".format(int(s_score)), True, WHITE)
+        sc = game_font.render("점수 : {}".format(int(print_score)), True, WHITE)
         screen.blit(sc, (455, 150))
         s = game_font.render('마우스버튼이나 "S"키를 누르면 게임이 시작됩니다.', True, WHITE)
         screen.blit(s, (120, 250))

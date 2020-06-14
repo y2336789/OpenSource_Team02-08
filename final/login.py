@@ -183,9 +183,10 @@ with requests.Session() as s:
             value = 0
             while value==0:
                 score_list = tengaii.game2()
+                tengaii.s_score =0
                 update3(score_list[1])
                 if score_list[0]=='0':
-                    tengaii.s_score = score_list[1]
+                    tengaii.print_score = score_list[1]
                 elif score_list[0]=='1':
                     tengaii.s_score = 0
                     value=1
