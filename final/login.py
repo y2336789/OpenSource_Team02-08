@@ -161,7 +161,7 @@ with requests.Session() as s:
             webbrowser.open(signup_URL)
             first_work=menu1.main()
         else:
-            print('올바른 작업을 선택해주세요.')
+            exit()
 
     # -- 여기서부터는 로그인이 된 세션이 유지--
     while True:
