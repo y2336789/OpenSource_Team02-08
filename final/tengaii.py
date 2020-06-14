@@ -11,7 +11,9 @@ s_score = 0
 # 기본 초기화 (반드시 해야 하는 것들)
 def game2():
     global s_score
+    pygame.mixer.pre_init(44100,-16,2,512)
     pygame.init()
+    pygame.mixer.init()
 
     WHITE = (255, 255, 255)
     screen_width = 1024
@@ -22,6 +24,12 @@ def game2():
     pygame.mixer.music.play(-1)
     attack_sound = pygame.mixer.Sound("PhoHit00.wav")
     bd_sound = pygame.mixer.Sound("pabDth00.wav")
+    shit_sound = pygame.mixer.Sound("PhoFir00.wav")
+    btsd_sound = pygame.mixer.Sound("pcaDth01.wav")
+    startsound = pygame.mixer.Sound("TPhYes00.wav")
+    shit_sound.set_volume(0.7)
+    attack_sound.set_volume(0.7)
+    bd_sound.set_volume(0.5)
 
     # 화면 타이틀 설정
     pygame.display.set_caption("Tengai")
@@ -130,7 +138,7 @@ def game2():
         # 게임종료 메시지
         # 시간초과
         running = True  # 게임이 진행중인가?
-
+        startsound.play()
         while running:
             clock.tick(60)  # 게임화면의 초당 프레임 수를 설정
             # 캐릭터가 1초 동안 60번 동작
@@ -189,6 +197,7 @@ def game2():
                         shit_x -= shit_speed
                         shit_y = dragon_y + dragon_height / 2
                         shit_xy.append([shit_x, shit_y])
+                        shit_sound.play()
 
             if dragon_x < 0:
                 dragon_x = 0
@@ -242,6 +251,7 @@ def game2():
                 shit_rect.top = shit_pos_y
 
                 if shit_rect.colliderect(battleship_rect):
+                    btsd_sound.play()
                     shit_to_remove = shit_idx  # 해당 무기 없애기 위한 값 설정
                     battleship_to_remove = 1  # 박쥐 없애기 위한 값 설정
                     print("game over")
@@ -307,12 +317,14 @@ def game2():
 
             # 배틀쉽과 박쥐 충돌 체크
             if battleship_rect.colliderect(bat_rect):
+                btsd_sound.play()
                 print("game over")
                 game_over()
                 pygame.time.delay(1000)
                 return 'game_screen'
 
             if battleship_rect.colliderect(dragon_rect):
+                btsd_sound.play()
                 print("game over")
                 game_over()
                 pygame.time.delay(1000)
