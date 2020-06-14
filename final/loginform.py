@@ -79,7 +79,7 @@ def input_string():
                     active3 = False
                 if back_box.collidepoint(event.pos):
                     active4 = not active4
-                    print("이전입니다.")
+                    return False
                 else:
                     active4 = False
                 # Change the current color of the input box.
@@ -138,6 +138,10 @@ def input_string():
         pg.draw.rect(screen, color2, input_box2, 2)
         pg.draw.rect(screen, color3, login_box, 2)
         pg.draw.rect(screen, color4, back_box, 2)
+        draw_text('이전', pg.font.Font('이순신Bold.ttf', 14), screen,
+                  back_box.centerx, back_box.centery, (255, 255, 255))
+        draw_text('로그인', pg.font.Font('이순신Bold.ttf', 14), screen,
+                  login_box.centerx, login_box.centery, (255, 255, 255))
 
         pg.display.flip()
         clock.tick(30)

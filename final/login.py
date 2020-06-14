@@ -173,15 +173,18 @@ with requests.Session() as s:
     while True:
         if first_work == 1:
             Info = loginform.input_string()
-            value = login(Info[0], Info[1])
-            if value:
-                Greeting()
-                break
+            if Info == False:
+                first_work = menu1.main()
             else:
-                loginform.space = ' ' * 38
-                loginform.errortext = loginform.space + '아이디 또는 비밀번호가 일치하지 않습니다.'
-                loginform.count1 = False
-                loginform.count2 = False
+                value = login(Info[0], Info[1])
+                if value:
+                    Greeting()
+                    break
+                else:
+                    loginform.space = ' ' * 38
+                    loginform.errortext = loginform.space + '아이디 또는 비밀번호가 일치하지 않습니다.'
+                    loginform.count1 = False
+                    loginform.count2 = False
         elif first_work == 2:
             webbrowser.open(signup_URL)
             first_work = menu1.main()
