@@ -33,6 +33,7 @@ update3_data = {
 
 URL = 'http://noriaki.pythonanywhere.com/'
 signup_URL = 'http://noriaki.pythonanywhere.com/signup/'
+logout_URL = 'http://noriaki.pythonanywhere.com/logout/'
 update1_URL = 'http://noriaki.pythonanywhere.com/update1/'
 update2_URL = 'http://noriaki.pythonanywhere.com/update2/'
 update3_URL = 'http://noriaki.pythonanywhere.com/update3/'
@@ -169,60 +170,67 @@ def login(str1, str2):
 
 # Session 생성, with 구문 안에서 유지
 with requests.Session() as s:
-    first_work = menu1.main()
-    while True:
-        if first_work == 1:
-            Info = loginform.input_string()
-            if Info == False:
+    loop = 1
+    while loop:
+        first_work = menu1.main()
+        while True:
+            if first_work == 1:
+                Info = loginform.input_string()
+                if Info == False:
+                    first_work = menu1.main()
+                else:
+                    value = login(Info[0], Info[1])
+                    if value:
+                        Greeting()
+                        break
+                    else:
+                        loginform.space = ' ' * 38
+                        loginform.errortext = loginform.space + '아이디 또는 비밀번호가 일치하지 않습니다.'
+                        loginform.count1 = False
+                        loginform.count2 = False
+            elif first_work == 2:
+                webbrowser.open(signup_URL)
                 first_work = menu1.main()
             else:
-                value = login(Info[0], Info[1])
-                if value:
-                    Greeting()
-                    break
-                else:
-                    loginform.space = ' ' * 38
-                    loginform.errortext = loginform.space + '아이디 또는 비밀번호가 일치하지 않습니다.'
-                    loginform.count1 = False
-                    loginform.count2 = False
-        elif first_work == 2:
-            webbrowser.open(signup_URL)
-            first_work = menu1.main()
-        else:
-            exit()
+                exit()
 
-    # -- 여기서부터는 로그인이 된 세션이 유지--
-    while True:
-        # 작업 설정
-        work = menu2.main()
-        if work == 1:
-            #init_score = 0
-            value = 0
-            while value == 0:
-                score_list = PySpaceShip.game1()
-                update1(score_list[1])
-                if score_list[0] == '0':
-                    PySpaceShip.score = score_list[1]
-                elif score_list[0] == '1':
-                    PySpaceShip.score = 0
-                    value = 1
+        # -- 여기서부터는 로그인이 된 세션이 유지--
+        while True:
+            # 작업 설정
+            work = menu2.main()
+            if work == 1:
+                #init_score = 0
+                value = 0
+                while value == 0:
+                    score_list = PySpaceShip.game1()
+                    update1(score_list[1])
+                    if score_list[0] == '0':
+                        PySpaceShip.score = score_list[1]
+                    elif score_list[0] == '1':
+                        PySpaceShip.score = 0
+                        value = 1
 
-        elif work == 2:
-            value = 0
-            while value == 0:
-                score_list = tengaii.game2()
-                tengaii.s_score = 0
-                update3(score_list[1])
-                if score_list[0] == '0':
-                    tengaii.print_score = score_list[1]
-                elif score_list[0] == '1':
+            elif work == 2:
+                value = 0
+                while value == 0:
+                    score_list = tengaii.game2()
                     tengaii.s_score = 0
-                    value = 1
-        elif work == 3:
-            ShowGlory()
-        elif work == 4:
-            PrintInfo()
-        else:
-            break
+                    update3(score_list[1])
+                    if score_list[0] == '0':
+                        tengaii.print_score = score_list[1]
+                    elif score_list[0] == '1':
+                        tengaii.s_score = 0
+                        value = 1
+            elif work == 3:
+                ShowGlory()
+            elif work == 4:
+                PrintInfo()
+            elif work == 5:
+                logout_req = s.get(logout_URL)
+                print(logout_req)
+                break
+            else:
+                loop=0
+                break
 
     print('게임을 종료합니다.')
