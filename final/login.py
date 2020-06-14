@@ -189,43 +189,11 @@ with requests.Session() as s:
                 elif score_list[0]=='1':
                     tengaii.s_score = 0
                     value=1
-        elif work==5:
-            break
-        '''
-        work = int(input('=============\n작업을 선택해주세요. \n1. 명예의 전당 \n2. 새로운 게임 \n3. 내 기록 보기 \n4. 로그아웃\n5. 끝내기\n=============\n'))
-        if work==5: #끝내기
-            break
-        elif work==4: #재로그인
-            logout_req = s.get('http://noriaki.pythonanywhere.com/logout/') #로그아웃 페이지로 이동하면 곧바로 로그아웃이 된다.
-            value = input('로그아웃 되었습니다!\n재로그인 하시겠습니까? (y/n)')
-            if value=='y':
-                #login()
-                pass
-            else:
-                break
-        elif work==3: #
-            print('=== 나의 최고 점수 ===')
-            PrintInfo()
-
-        #업데이트
-        elif work==2:
-            game_order = int(input('게임을 선택하세요! \n1. 운석피하기\n2. 텐가이\n(1,2)'))
-            if game_order==1:
-                value = int(input('운석피하기의 새로운 점수를 입력해주세요.'))
-                update1(value)
-            elif game_order==2:
-                value = int(input('텐가이의 새로운 점수를 입력해주세요.'))
-                update3(value)
-
-            #업데이트된 정보 출력
-            print('=== 업데이트된 점수 ===')
-            PrintInfo()
-
-        elif work==1:
+        elif work==3:
             ShowGlory()
-
+        elif work==4:
+            PrintInfo()
         else:
-            print('올바른 작업을 선택해주세요.')
-        '''
+            break
 
     print('게임을 종료합니다.')

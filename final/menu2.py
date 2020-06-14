@@ -129,19 +129,19 @@ def main():
     startPos = startText.get_rect(midtop=titleRect.inflate(0, 100).midbottom)
     hiScoreText = font.render('텐가이 시작', 1, BLUE)
     hiScorePos = hiScoreText.get_rect(topleft=startPos.bottomleft)
-    fxText = font.render('SOUND FX ', 1, BLUE)
+    fxText = font.render('랭킹 보기', 1, BLUE)
     fxPos = fxText.get_rect(topleft=hiScorePos.bottomleft)
-    fxOnText = font.render('ON', 1, RED)
-    fxOffText = font.render('OFF', 1, RED)
-    fxOnPos = fxOnText.get_rect(topleft=fxPos.topright)
-    fxOffPos = fxOffText.get_rect(topleft=fxPos.topright)
-    musicText = font.render('MUSIC', 1, BLUE)
+    # fxOnText = font.render('ON', 1, RED)
+    # fxOffText = font.render('OFF', 1, RED)
+    # fxOnPos = fxOnText.get_rect(topleft=fxPos.topright)
+    # fxOffPos = fxOffText.get_rect(topleft=fxPos.topright)
+    musicText = font.render('내점수 보기', 1, BLUE)
     musicPos = fxText.get_rect(topleft=fxPos.bottomleft)
-    musicOnText = font.render('ON', 1, RED)
-    musicOffText = font.render('OFF', 1, RED)
-    musicOnPos = musicOnText.get_rect(topleft=musicPos.topright)
-    musicOffPos = musicOffText.get_rect(topleft=musicPos.topright)
-    quitText = font.render('QUIT', 1, BLUE)
+    # musicOnText = font.render('ON', 1, RED)
+    # musicOffText = font.render('OFF', 1, RED)
+    # musicOnPos = musicOnText.get_rect(topleft=musicPos.topright)
+    # musicOffPos = musicOffText.get_rect(topleft=musicPos.topright)
+    quitText = font.render('로그아웃', 1, BLUE)
     quitPos = quitText.get_rect(topleft=musicPos.bottomleft)
     selectText = font.render('*', 1, BLUE)
     selectPos = selectText.get_rect(topright=startPos.topleft)
@@ -178,17 +178,9 @@ def main():
                     return 2
                     #showHiScores = True
                 elif selection == 3:
-                    soundFX = not soundFX
-                    if soundFX:
-                        missile_sound.play()
-                    Database.setSound(int(soundFX))
-                elif selection == 4 and pygame.mixer:
-                    music = not music
-                    if music:
-                        pygame.mixer.music.play(loops=-1)
-                    else:
-                        pygame.mixer.music.stop()
-                    Database.setSound(int(music), music=True)
+                    return 3
+                elif selection == 4:
+                    return 4
                 elif selection == 5:
                     return 5
             elif (event.type == pygame.KEYDOWN
@@ -208,13 +200,9 @@ def main():
             textOverlays = zip(highScoreTexts, highScorePos)
         else:
             textOverlays = zip([startText, hiScoreText, fxText,
-                                musicText, quitText, selectText,
-                                fxOnText if soundFX else fxOffText,
-                                musicOnText if music else musicOffText],
+                                musicText, quitText, selectText],
                                [startPos, hiScorePos, fxPos,
-                                musicPos, quitPos, selectPos,
-                                fxOnPos if soundFX else fxOffPos,
-                                musicOnPos if music else musicOffPos])
+                                musicPos, quitPos, selectPos])
             screen.blit(title, titleRect)
         for txt, pos in textOverlays:
             screen.blit(txt, pos)
