@@ -7,6 +7,7 @@ import menu2
 import loginform
 import PySpaceShip
 import tengaii
+import showglory
 
 # 헤더 정보입니다.
 headers = {
@@ -120,13 +121,19 @@ def ShowGlory():
     print('<명예의 전당>')
     for title in glory1:
         for sub_title in title.find_all('h2'):
-            print(sub_title.get_text())
-        print(title.find('h3').get_text())
+            a = sub_title.get_text()
+            print(a)
+        b = title.find('h3').get_text()
+        print(b)
 
     for title in glory2:
         for sub_title in title.find_all('h2'):
-            print(sub_title.get_text())
-        print(title.find('h3').get_text())
+            c = sub_title.get_text()
+            print(c)
+        d = title.find('h3').get_text()
+        print(d)
+
+    showglory.input_string(a, b, c, d)
 
 
 '''
