@@ -244,8 +244,8 @@ def game1():
         t = -99999999999
 
         while True:
-            if(score == 300):         # clear 조건은 score 300점 달성!!!
-                return 'game_screen'  # clear 조건으로, 다음 스테이지 넘어갈 준비!!!
+            # if(score == 300):         # clear 조건은 score 300점 달성!!!
+            #     return 'game_screen'  # clear 조건으로, 다음 스테이지 넘어갈 준비!!!
 
             pygame.display.update()
             fps_clock.tick(FPS)

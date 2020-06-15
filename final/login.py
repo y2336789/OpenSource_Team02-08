@@ -8,6 +8,7 @@ import loginform
 import PySpaceShip
 import tengaii
 import showglory
+import myscore
 
 # 헤더 정보입니다.
 headers = {
@@ -86,12 +87,17 @@ def PrintInfo():
     # score3 = soup.select('#home-section > div.site-section > div > div:nth-child(2) > div:nth-child(3) > div')
 
     for title in score1:
-        print(title.find('h3').get_text())
-        print(title.find('h2').get_text())
+        a = title.find('h3').get_text()
+        print(a)
+        b = title.find('h2').get_text()
+        print(b)
 
     for title in score2:
-        print(title.find('h3').get_text())
-        print(title.find('h2').get_text())
+        c = title.find('h3').get_text()
+        print(c)
+        d = title.find('h2').get_text()
+        print(d)
+    myscore.input_string(a, b, c, d)
 
 
 '''

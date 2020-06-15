@@ -71,10 +71,10 @@ def main():
     tegai_start_Text = font.render('텐가이 시작', 1, BLUE)
     tegai_start_Pos = tegai_start_Text.get_rect(
         topleft=war_start_Pos.bottomleft)
-    rank_Text = font.render('랭킹 보기', 1, BLUE)
+    rank_Text = font.render('명예의 전당', 1, BLUE)
     rank_Pos = rank_Text.get_rect(topleft=tegai_start_Pos.bottomleft)
 
-    myscore_Text = font.render('내점수 보기', 1, BLUE)
+    myscore_Text = font.render('나의 최고 기록', 1, BLUE)
     myscore_Pos = rank_Text.get_rect(topleft=rank_Pos.bottomleft)
 
     logout_Text = font.render('로그아웃', 1, BLUE)
